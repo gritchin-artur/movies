@@ -1,18 +1,23 @@
 import data from './data.js';
 import { getMovies } from './utils/isFilter.js';
 
-const input = document.getElementById('input-movie');
-const movieList = document.getElementById('movie-list');
+// const input = document.getElementById('input-movie');
+// const movieList = document.getElementById('movie-list');
+
+const dom = {
+    input: document.getElementById('input-movie'),
+    movieList : document.getElementById('movie-list')
+}
 
 let timeoutId;
 let outputData = data.movies;
 
 // render elements
 function renderMovies(movies) {
-    movieList.innerHTML = '';
+    dom.movieList.innerHTML = '';
 
     if (movies.length === 0) {
-        movieList.innerHTML = '<li>Sorry this movie not found</li>';
+        dom.movieList.innerHTML = '<li>Sorry this movie not found</li>';
     }
 
     movies.forEach((el) => {
@@ -29,12 +34,12 @@ function renderMovies(movies) {
         nameMovie.innerHTML = el.name;
 
         movie.append(imgMovie, nameMovie);
-        movieList.appendChild(movie);
+        dom.movieList.appendChild(movie);
     });
 }
 
 // tracks changes in input
-input.addEventListener('input', (e) => {
+dom.input.addEventListener('input', (e) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
         outputData = getMovies(e.target.value, data.movies);
