@@ -28,8 +28,7 @@ function renderMovies(movies) {
         nameMovie.classList.add('movie-name');
         nameMovie.innerHTML = el.name;
 
-        movie.appendChild(imgMovie);
-        movie.appendChild(nameMovie);
+        movie.append(imgMovie, nameMovie);
         movieList.appendChild(movie);
     });
 }
